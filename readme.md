@@ -9,90 +9,34 @@ A complete step-by-step guide to integrating **ESLint**, **Prettier**, and **Hus
 Install all required packages:
 
 ```bash
-npm i -D eslint@8.57.1 prettier husky lint-staged
+npm i -D eslint-config-jejolare husky lint-staged
 ```
-
-```bash
-npm i -D @typescript-eslint/parser @typescript-eslint/eslint-plugin
-```
-
-```bash
-npm i -D eslint-config-airbnb-base eslint-plugin-import
-```
-
-```bash
-npm i -D eslint-config-prettier eslint-plugin-prettier eslint-config-next
-```
-
 ---
 
 ## 🛠️ Step 2: Configuration Files
 
-### `.eslintrc.json`
+### `.eslintrc.js`
 
-```json
-{
-  "env": {
-    "es2021": true,
-    "node": true
+```js
+module.exports = {
+  // Or 'jejolare/backend' for Node.js app
+  extends: ['jejolare/frontend'],
+
+  // This is needed only if you use TypeScript
+  settings: {
+    'import/resolver': {
+      typescript: {
+        project: './tsconfig.json',
+      },
+    },
   },
-  "extends": [
-    "airbnb-base",
-    "plugin:@typescript-eslint/recommended",
-    "next/core-web-vitals",
-    "plugin:prettier/recommended",
-    "prettier"
-  ],
-  "parser": "@typescript-eslint/parser",
-  "plugins": ["@typescript-eslint", "import"],
-  "parserOptions": {
-    "ecmaVersion": "latest",
-    "sourceType": "module",
-    "project": "./tsconfig.json"
+
+  // Override
+  rules: {
+    'no-unused-vars': ['off'],
+    '@typescript-eslint/no-unused-vars': ['off'],
   },
-  "rules": {
-    "no-console": "off",
-    "no-void": "off",
-    "import/extensions": "off",
-    "no-unused-vars": [
-      "warn",
-      {
-        "argsIgnorePattern": "^_"
-      }
-    ],
-    "func-names": "off",
-    "consistent-return": "off",
-    "no-restricted-syntax": "off",
-    "@typescript-eslint/indent": "off",
-    "class-methods-use-this": "off",
-    "@typescript-eslint/no-unused-vars": [
-      "warn",
-      {
-        "argsIgnorePattern": "^_"
-      }
-    ],
-    "@typescript-eslint/explicit-member-accessibility": "off",
-    "@typescript-eslint/no-explicit-any": "error",
-    "lines-between-class-members": "off",
-    "camelcase": "off",
-    "no-underscore-dangle": "off",
-    "no-shadow": "off",
-    "no-await-in-loop": "off",
-    "radix": "off",
-    "no-plusplus": "off",
-    "no-promise-executor-return": "off",
-    "import/no-duplicates": "off",
-    "import/prefer-default-export": "off",
-    "import/no-cycle": "off"
-  },
-  "settings": {
-    "import/resolver": {
-      "node": {
-        "extensions": [".js", ".ts"]
-      }
-    }
-  }
-}
+};
 ```
 
 ---
@@ -123,21 +67,14 @@ static/
 
 ---
 
-### `prettier.config.cjs`
+### `prettier.config.mjs`
 
 ```js
 /** @type {import("prettier").Config} */
-module.exports = {
-  semi: true,
-  singleQuote: true,
-  trailingComma: 'all',
-  printWidth: 100,
-  tabWidth: 4,
-  useTabs: true,
-  bracketSpacing: true,
-  arrowParens: 'always',
-  endOfLine: 'lf',
-};
+import prettierConfig from 'eslint-config-jejolare/prettier';
+
+export default prettierConfig;
+
 ```
 
 ---
