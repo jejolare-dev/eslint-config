@@ -134,7 +134,7 @@ npx lint-staged
 "scripts": {
   "format": "prettier --write .",
   "format:check": "prettier --check .",
-  "eslint": "eslint . --ext .js,.ts,.tsx,.jsx --fix"
+  "eslint": "eslint . --ext .js,.ts,.tsx,.jsx,.cjs,.mjs --fix"
 }
 ```
 
