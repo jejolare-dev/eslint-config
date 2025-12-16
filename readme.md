@@ -15,7 +15,7 @@ npm i -D eslint-config-jejolare husky lint-staged
 
 ## 🛠️ Step 2: Configuration Files
 
-### `.eslintrc.js`
+### `.eslintrc.cjs`
 
 ```js
 module.exports = {
