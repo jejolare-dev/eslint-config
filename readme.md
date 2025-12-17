@@ -5,8 +5,9 @@ A complete step-by-step guide to integrating **ESLint**, **Prettier**, and **Hus
 ---
 
 ## 📦 Step 1: Install Dependencies
+1. Remove all eslint & prettier connected packages you already have installed (eslint-plugin-*, eslint-config-*, eslint-parser*, and eslint & prettier themselves) due to possible installation conflicts with `eslint-config-jejolare` package.
 
-Install all required packages:
+2. Install all required packages:
 
 ```bash
 npm i -D eslint-config-jejolare husky lint-staged
@@ -15,7 +16,7 @@ npm i -D eslint-config-jejolare husky lint-staged
 
 ## 🛠️ Step 2: Configuration Files
 
-### `.eslintrc.js`
+### `.eslintrc.cjs`
 
 ```js
 module.exports = {
@@ -134,7 +135,7 @@ npx lint-staged
 "scripts": {
   "format": "prettier --write .",
   "format:check": "prettier --check .",
-  "eslint": "eslint . --ext .js,.ts,.tsx,.jsx --fix"
+  "eslint": "eslint . --ext .js,.ts,.tsx,.jsx,.cjs,.mjs --fix"
 }
 ```
 
